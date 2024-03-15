@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Products</title>
+</head>
+<body>
+    <h1>All Products</h1>
+    <ul>
+        {% for product in products %}
+            <li>
+                <strong>{{ product.ProductName }}</strong><br>
+                Price: ${{ product.Price }}<br>
+                Description: {{ product.Description }}<br>
+                Image: <img src="{{ product.ImageURL }}" alt="{{ product.ProductName }}"><br>
+                Category: {{ product.Category }}
+                <form action="{{ url_for('delete_product', product_id=product.ProductID) }}" method="POST">
+                    <input type="submit" value="Delete">
+                </form>
+        {% endfor %}
+        
+    </ul>
+    <a href="/">Back to Homepage</a><br>
+    <a href="/add_product">Add Product</a>
+</body>
+</html>
